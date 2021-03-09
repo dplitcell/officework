@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DITDeclBlankForm_PDF" language="groovy" pageWidth="595" pageHeight="842" columnWidth="590" leftMargin="5" rightMargin="0" topMargin="5" bottomMargin="5">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\DPLPayrl\\Script\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Pcomarker" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select ad.company_marker, ad.ngs, ep.nam, ac.pan_number, ad.mobile,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 8 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80ccc,
+  (select min(d.BATCH_NO||'/'||d.BATCH_SRL_NO) from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) batch_srl,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=11 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80d,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=12 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80dd,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=19 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80e,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=28 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80ccd,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=16 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80u,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 6 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_1013a,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=17 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_hblpr,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=18 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_hblint,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=27 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_80tta,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=26) amt_othinc,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 5 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_nsc,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 4 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_nscint,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 3 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_lic,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 1 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_ppf,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 7 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_fd,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 2 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_ulip,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=30 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_elss,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID= 9 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_childedu,
+  (select d.ITAX_AMT  from vw_dcpy_itax_declaration d where d.FIN_YEAR_FROM=ep.taxyear and d.NGS=ep.ngs and d.TAX_FORM_ID=34 and d.ITAX_TYPE in ('ACTUAL','MODIFIED ACTUAL')) amt_sukanya
+ from t_dcpy_emp_pay_dtls ep, t_dcpy_company c, t_dcpy_emp_acc_dtls ac,  t_dcpy_emp_address ad
+ where c.company_marker = ep.company_marker and ep.sal_month=c.last_pay_month
+  and ep.sal_year=c.last_pay_year
+  and ep.ngs = ac.ngs and ep.company_marker = ac.company_marker
+  and ep.ngs = ad.ngs and ep.company_marker = ad.company_marker
+  and ep.NGS=$P{Pngs}]]>
+	</queryString>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAN_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBILE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80CCC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BATCH_SRL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80D" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80DD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80E" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80CCD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80U" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_1013A" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_HBLPR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_HBLINT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_80TTA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_OTHINC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_NSC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_NSCINT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_LIC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_PPF" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_FD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_ULIP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_ELSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_CHILDEDU" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AMT_SUKANYA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="830">
+			<image>
+				<reportElement x="0" y="0" width="580" height="820"/>
+				<imageExpression class="java.lang.String"><![CDATA["supp_decl_form.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="71" y="155" width="169" height="23"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="402" y="154" width="70" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PAN_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="488" y="154" width="81" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BATCH_SRL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="155" width="80" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NGS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="217" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80CCC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="243" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80D}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="276" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80DD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="308" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80E}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="336" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80CCD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="361" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80U}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="381" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_1013A}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="405" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_HBLPR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="420" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_HBLINT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="433" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_80TTA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="451" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_OTHINC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="470" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_NSC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="494" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_NSCINT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="509" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_LIC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="522" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_PPF}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="547" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_FD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="567" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_ULIP}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="582" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_ELSS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="597" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_CHILDEDU}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="622" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{AMT_SUKANYA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

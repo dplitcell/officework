@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DITDeclBlankForm_PDF" language="groovy" pageWidth="595" pageHeight="842" columnWidth="590" leftMargin="5" rightMargin="0" topMargin="5" bottomMargin="5">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\DPLPayrl\\Script\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Pcomarker" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select ad.company_marker, ad.ngs, ep.nam, dg.desig_description, ac.pan_number, ad.mobile,
+  (case when c.last_pay_month < 3 then (c.last_pay_year-1) else c.last_pay_year end) ||'-'||
+  substr((case when c.last_pay_month < 3 then (c.last_pay_year) else (c.last_pay_year+1) end),3,2) fy,
+  (case when c.last_pay_month < 3 then (c.last_pay_year) else (c.last_pay_year+1) end) ||'-'||
+  substr((case when c.last_pay_month < 3 then (c.last_pay_year+1) else (c.last_pay_year+2) end),3,2) ay
+ from t_dcpy_emp_pay_dtls ep, t_dcpy_company c, t_dcpy_emp_acc_dtls ac,
+  t_dcpy_emp_address ad, t_dcpy_dpl_designation dg
+ where c.company_marker = ep.company_marker and ep.sal_month=c.last_pay_month
+  and ep.sal_year=c.last_pay_year
+  and ep.ngs = ac.ngs and ep.company_marker = ac.company_marker and to_number(ep.degn) = dg.designation_id
+  and ep.ngs = ad.ngs and ep.company_marker = ad.company_marker
+  and ep.NGS=$P{Pngs}]]>
+	</queryString>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESIG_DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAN_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBILE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="830">
+			<image>
+				<reportElement x="0" y="0" width="580" height="820"/>
+				<imageExpression class="java.lang.String"><![CDATA["ITDeclForm1.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="128" y="140" width="163" height="23"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="140" width="101" height="23"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESIG_DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="400" y="140" width="70" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PAN_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="475" y="140" width="81" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MOBILE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="140" width="80" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NGS}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="830">
+			<image>
+				<reportElement x="0" y="0" width="580" height="820"/>
+				<imageExpression class="java.lang.String"><![CDATA["ITDeclForm2.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

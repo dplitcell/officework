@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DITDeclBlankForm_PDF" language="groovy" pageWidth="595" pageHeight="842" columnWidth="590" leftMargin="5" rightMargin="0" topMargin="5" bottomMargin="5">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\DPLPayrl\\Script\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Ptaxyear" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from (
+select company_marker, ngs, tax_year, empid, disp_order, des, sal_month, sal_year,
+ decode(disp_order,1,last_day(to_date(sal_month||'/01/'||sal_year,'mm/dd/yyyy'))+1,
+    3, payment_date, nvl(payment_date,last_sal_date)) payment_date,
+ decode(disp_order,1,taxable_salary,2,taxable_salary,7,taxable_salary,
+    6,null, nvl(addl_salary,0)) addl_salary,
+ (case when ded_sec10 = 0 then null else ded_sec10 end) ded_sec10,
+ decode(disp_order,6,null,taxable_salary) taxable_salary,
+ (case when itax = 0 then null else itax end) itax,
+ (case when cess = 0 then null else cess end) cess,
+ decode(disp_order,1,'Salary of '||to_char(to_date(sal_month||'/01/'||sal_year,'mm/dd/yyyy'),'Mon-yyyy'),
+      2,'Projected Salary Upto Feb-'||(tax_year+1),6,'Total Perq other than Salary',
+     nvl(remarks,des)) remarks, perq_sal, nam, desig, dol_reason, dol_company, profit_1c
+ from vw_dcpy_rpt_taxable_salary_dtl
+ where NGS=$P{Pngs} and tax_year=$P{Ptaxyear}
+   and disp_order not in (4,5)
+   and (addl_salary <> 0 or ded_sec10 <> 0 or taxable_salary <> 0
+        or itax <> 0 or cess <> 0 or perq_sal <> 0)
+) order by payment_date, disp_order, sal_year, sal_month]]>
+	</queryString>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TAX_YEAR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMPID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISP_ORDER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_MONTH" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_YEAR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAYMENT_DATE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADDL_SALARY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DED_SEC10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TAXABLE_SALARY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITAX" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CESS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REMARKS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERQ_SAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESIG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOL_REASON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOL_COMPANY" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROFIT_1C" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="ADDL_SALARY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{ADDL_SALARY}]]></variableExpression>
+	</variable>
+	<variable name="DED_SEC10_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{DED_SEC10}]]></variableExpression>
+	</variable>
+	<variable name="TAXABLE_SALARY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TAXABLE_SALARY}]]></variableExpression>
+	</variable>
+	<variable name="ITAX_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{ITAX}]]></variableExpression>
+	</variable>
+	<variable name="CESS_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{CESS}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="108">
+			<staticText>
+				<reportElement x="90" y="4" width="351" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[The Durgapur Projects Limited]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="30" width="351" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Salary Breakup for the Financial Year "+$P{Ptaxyear}+"-"+($F{TAX_YEAR}+1)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="67" width="67" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Employee ID :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="67" width="59" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NGS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="82" width="37" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="82" width="169" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="67" width="66" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Designation :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="374" y="67" width="216" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESIG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="82" width="88" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Leaving :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="374" y="82" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{DOL_COMPANY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="451" y="35" width="40" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Run Date :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="493" y="35" width="92" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17">
+			<staticText>
+				<reportElement x="11" y="3" width="59" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Payment Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="3" width="57" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="3" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="3" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sec 10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="3" width="60" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Taxable Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="3" width="60" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Perq Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="3" width="60" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ITax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="517" y="3" width="47" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Cess]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="1" width="561" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="16" width="561" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="67" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="210" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="279" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="335" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="396" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="460" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="519" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="569" y="1" width="1" height="16"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="13" y="4" width="54" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{PAYMENT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="4" width="137" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REMARKS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="212" y="4" width="59" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ADDL_SALARY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="276" y="4" width="56" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{DED_SEC10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="335" y="4" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{TAXABLE_SALARY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="399" y="4" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PERQ_SAL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="18" width="561" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="465" y="4" width="50" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ITAX}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="521" y="4" width="43" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{CESS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="67" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="210" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="279" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="335" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="396" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="460" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="519" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="569" y="0" width="1" height="19"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="34">
+			<staticText>
+				<reportElement x="178" y="7" width="33" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="212" y="7" width="59" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{ADDL_SALARY_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="276" y="7" width="56" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{DED_SEC10_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="335" y="7" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TAXABLE_SALARY_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00" isBlankWhenNull="true">
+				<reportElement x="399" y="7" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{PROFIT_1C}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="465" y="7" width="50" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{ITAX_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="521" y="7" width="43" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{CESS_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="210" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="335" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="8" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="279" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="460" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="396" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="569" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="519" y="0" width="1" height="26"/>
+			</line>
+			<line>
+				<reportElement x="9" y="26" width="561" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

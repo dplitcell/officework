@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SALARY_CERTIFICATE_REPORT_TXT" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Pcomarker" class="java.lang.String"/>
+	<parameter name="Pfromyear" class="java.lang.String"/>
+	<parameter name="Ptoyear" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select el.ngs,el.name,el.company_marker,el.company_name,max(el.desg_nm)desg_nm,sum(el.gross)gross,
+dcpy_utility_pg.spell_indian_money(sum(el.gross))spell_money
+ from vw_dcpy_dpl_emp_lst el
+where el.company_marker=$P{Pcomarker}
+and el.NGS=decode($P{Pngs},'0',el.NGS,$P{Pngs})
+and el.taxyear=$P{Pfromyear}
+group by el.ngs,el.name,el.company_marker,el.company_name]]>
+	</queryString>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMPANY_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESG_NM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPELL_MONEY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="GROSS_SAL" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{GROSS}]]></variableExpression>
+	</variable>
+	<group name="EMP_GRP" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{NGS}]]></groupExpression>
+		<groupHeader>
+			<band height="202">
+				<staticText>
+					<reportElement x="0" y="69" width="550" height="20" />
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[OFFICE OF THE DEPUTY GENERAL  MANAGER (FINANCE &  ACCOUNTS)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="150" width="550" height="20" />
+					<textElement textAlignment="Center">
+						<font size="12" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["SALARY CERTIFICATE FOR THE FINANCIAL YEAR "+$P{Pfromyear}+" - "+$P{Ptoyear}.substring(2)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="29" width="550" height="20" />
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COMPANY_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="89" width="550" height="20" />
+					<textElement textAlignment="Center">
+						<font size="12" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[DURGAPUR - 713 201]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="119" width="318" height="20" />
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["No: DPL/DGM(F&A)/WAGES/SC/"+$F{NGS}+"/"+$P{Pfromyear}+$P{Ptoyear}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="318" y="119" width="232" height="20" />
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Dated : "+new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="318" y="0" width="232" height="20" />
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page :    "+$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="49" width="550" height="20" />
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[(A GOVERMENT OF WEST BENGAL UNDERTAKING)]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="204" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="550" height="175" />
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Certified that " +$F{NAME}+ " is an employee of The Durgapur Projects Limited, Durgapur and he is working in the capacity of " + $F{DESG_NM} + " (Employee No:- "+$F{NGS}+"). He has drawn total emoluments of Rs. " + new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{GROSS})+ " (" + $F{SPELL_MONEY} + ") during the Financial Year " + $P{Pfromyear} + "-" + $P{Ptoyear}.substring(2) + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="1" width="320" height="20" />
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Manager (D.P.) / Asst. Manager (Sal & Estb.)]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

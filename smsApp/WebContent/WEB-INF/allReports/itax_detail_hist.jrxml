@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="itax_detail" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="Pcomarker" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<parameter name="Pyear" class="java.lang.String"/>
+	<parameter name="Pmonth" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from vw_dcpy_rpt_itax_detail_hist
+ where company_marker=$P{Pcomarker}
+  and ngs = $P{Pngs} and sal_month=$P{Pmonth} and sal_year=$P{Pyear}]]>
+	</queryString>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAN_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TAX_YEAR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_MONTH" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_YEAR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_1A" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROJ_SAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROFIT_1C" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROJ_PERQ" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HR_REB_2A" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CONV_2B" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WB_TAX_4B" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INT_HLOAN_7A" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOM_7B" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PF_9A1_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAL_SAV_9A2_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PPF_9A3_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ULIP_9A4_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LIC_9A5_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NSC_9A6_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NSC_INT_9A7_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MUTUAL_9A8_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CHILD_EDU_9A9_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HLON_PRIN_9A10_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LIC_PEN_9A11_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BOND_9A12_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOT_80C_9A13_QUALIFY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAVING_INTT_7C" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAVING_INTT_DECLARED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80D_9BA_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80DD_9BB_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80DDB_9BC_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EDUINT_80E_9BD_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISABLE_80U_9BE_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DONAT_80G_9BF_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NPS_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOT_6A_10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TINCOME_11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITAX_12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUCH_12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CESS_13" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DED_89_15" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TAX_PAYABLE_16" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TDS_16A" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TDS_PERQ_16B" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NET_TAX_16" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HRA_PAID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HOUSE_RENT_DECLARED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOME_NSC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOME_MCS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOME_GOVINT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITD_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CESS_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REF_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HOUSE_RENT_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INT_HLOAN_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOM_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOM_NSC_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOM_MCS_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_INCOM_GOVINT_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SAVING_INTT_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PPF_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ULIP_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LIC_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NSC_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NSC_INTT_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MUTUAL_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CHILD_EDU_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HLON_PRIN_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LIC_PEN_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BOND_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80D_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80DD_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED80DDB_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EDUINT_80E_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISABLE_80U_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DONAT_80G_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NPS_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CPF_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VPF_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LIP_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GIP_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MANUAL_TAX" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STANDARD_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GROSS_SALARY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NET_SALARY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_OTH_INCOME" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GROSS_TOTAL_INCOME" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_SEC10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_80C_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTH_80C_NOW" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="800" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="0" width="522" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Income Tax Details for the Month "+$F{SAL_MONTH}+"/"+$F{SAL_YEAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="39" height="20"/>
+				<textElement/>
+				<text><![CDATA[Emp No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="41" y="36" width="46" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NGS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="36" width="236" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="36" width="28" height="20"/>
+				<textElement/>
+				<text><![CDATA[PAN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="369" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PAN_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="476" y="36" width="23" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ref.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="500" y="36" width="55" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REF_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="76" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 1. Salary]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="76" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SAL_1A})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="101" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PROFIT_1C})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="152" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HR_REB_2A}+$F{OTH_SEC10})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="177" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{GROSS_SALARY})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="202" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{WB_TAX_4B})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="227" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NET_SALARY})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="252" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format((-1 * $F{INT_HLOAN_7A}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="277" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{TOTAL_OTH_INCOME})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="302" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{GROSS_TOTAL_INCOME})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="327" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{TOT_6A_10}+$F{SAVING_INTT_DECLARED}-$F{SAVING_INTT_7C}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="352" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{TINCOME_11})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="427" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{CESS_13})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="477" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{TDS_16A})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="533" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{TAX_PAYABLE_16}-$F{TDS_16A}-$F{MANUAL_TAX}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="452" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{TAX_PAYABLE_16})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="570" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{ITD_DED}+$F{CESS_DED}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="101" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 2. Perquisit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="152" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 4. Sec 10 Deduction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="177" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 5. Gross Salary (1+2-3-4)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="202" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 6. Prof. Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="227" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 7. Net Salary (4-5)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="252" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 8. HBL (Interest)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="277" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 9. Total Other Income]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="302" width="159" height="20"/>
+				<textElement/>
+				<text><![CDATA[10. Gross Total Income (6-7+8)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="327" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[11. Chap VI-A Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="352" width="147" height="20"/>
+				<textElement/>
+				<text><![CDATA[12.Taxable Income (9-10)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="377" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[13. Total Tax on 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="402" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[14. U/S 87A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="427" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[15. CESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="452" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[16. Total Liability]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="477" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[17. Tax Deducted (Payroll)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="533" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[19. Tax Due/Refund]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="377" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{ITAX_12})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="570" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[20. Current Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="300" width="67" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80C Total]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="54" y="301" width="129" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{TOT_80C_9A13_QUALIFY})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="315" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LIC_PEN_9A11_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="315" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80CCC]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="327" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{CPF_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="351" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NSC_9A6_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="363" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LIC_9A5_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="411" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{ULIP_9A4_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="399" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PPF_9A3_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="423" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HLON_PRIN_9A10_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="435" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{CHILD_EDU_9A9_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="490" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{BOND_9A12_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="327" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="351" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NSC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="363" width="66" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LIC (non Sal)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="399" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="411" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ULIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="423" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HBL (Prin)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="435" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tution]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="447" width="51" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fix Deposit]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="447" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MUTUAL_9A8_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="490" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80CCG]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="477" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NPS_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="477" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80CCD NPS]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="503" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80D_9BA_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="516" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80DD_9BB_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="529" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80DDB_9BC_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="542" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{EDUINT_80E_9BD_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="556" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SAVING_INTT_7C})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="569" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{DISABLE_80U_9BE_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="582" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{DONAT_80G_9BF_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="503" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="516" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80DD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="529" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80DDB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="542" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="556" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80TTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="569" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="582" width="50" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[80G]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="545" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="64" width="550" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="211" width="74" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[P O Interest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="225" width="78" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TD/RD/NSC/KVP Intt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="239" width="74" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Gov Security Intt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="253" width="74" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Other Source]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="253" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOM_7B})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="225" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOME_NSC})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="211" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOME_MCS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="239" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOME_GOVINT})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="275" y="64" width="1" height="530"/>
+			</line>
+			<line>
+				<reportElement x="0" y="594" width="545" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="5" y="107" width="86" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[House Rent Allowance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="121" width="86" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[House Rent Declared]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="107" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HRA_PAID})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="121" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HOUSE_RENT_DECLARED})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="183" width="115" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Other Income from :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="138" width="275" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="270" width="275" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="469" width="275" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="197" width="74" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Savings Interest]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="197" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SAVING_INTT_DECLARED})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="197" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SAVING_INTT_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="211" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOM_MCS_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="225" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOM_NSC_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="239" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOM_GOVINT_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="253" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_INCOM_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="315" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LIC_PEN_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="351" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NSC_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="363" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LIC_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="399" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PPF_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="411" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{ULIP_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="423" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HLON_PRIN_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="435" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{CHILD_EDU_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="447" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MUTUAL_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="477" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NPS_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="490" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{BOND_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="503" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80D_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="516" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80DD_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="529" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MED80DDB_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="542" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{EDUINT_80E_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="569" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{DISABLE_80U_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="582" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{DONAT_80G_NOW})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="127" y="68" width="60" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tax Calculated on Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="68" width="44" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Amount as on now]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="277" width="74" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HBL Interest]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="86" y="276" width="97" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format((-1 * $F{INT_HLOAN_7A}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="275" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{INT_HLOAN_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="184" y="121" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{HOUSE_RENT_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="339" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{VPF_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="339" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[VPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="387" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[GIP]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="387" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{GIP_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="375" width="47" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LIP]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="375" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LIP_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="502" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{MANUAL_TAX})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="502" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[18. Tax Ded/Ref (Manual)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="127" width="132" height="20"/>
+				<textElement/>
+				<text><![CDATA[ 3. Standard Deduction]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="406" y="127" width="142" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{STANDARD_DED})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="180" y="459" width="87" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_80C_NOW})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="80" y="459" width="103" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{OTH_80C_GROSS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="459" width="51" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Other 80C]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

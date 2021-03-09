@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="emp_pf_ledger" language="groovy" pageWidth="810" pageHeight="595" orientation="Landscape" columnWidth="774" leftMargin="18" rightMargin="18" topMargin="25" bottomMargin="0">
+	<parameter name="Pcomarker" class="java.lang.String"/>
+	<parameter name="Pngs" class="java.lang.String"/>
+	<parameter name="Pfromyear" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="Ptoyear" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="PempType" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select t.*,(select decode(count(*),0,'NOMINEE NOT REGISTERED')
+    from t_dcpf_nominee_member where ngs=t.ngs) nominee
+ from vw_dcpf_emp_pfledger t
+where finyear_from=$P{Pfromyear}
+and finyear_to=$P{Ptoyear}
+and t.company_marker=$P{Pcomarker}
+and t.emptype=decode($P{PempType},'0',t.emptype, $P{PempType})
+and ($P{Pngs}=0  and not exists (select 1 from t_dcpy_emp_pfpen_master m
+ where m.company_marker=t.company_marker and m.ngs = t.ngs
+ and m.dol_pf <= last_day(to_date('01-feb-'||$P{Ptoyear},'dd-mon-yyyy')) )
+     OR
+     t.ngs=$P{Pngs}
+    )
+order by t.company_marker,t.finyear_from,t.finyear_to,to_number(t.ngs),t.prntyear,t.printmonth]]>
+	</queryString>
+	<field name="COMPANY_MARKER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMPANY_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NGS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PF_ACCOUNT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SALYEAR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SALMONTH" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRNTYEAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRINTMONTH" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ROW_DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PF_OWN_OPEN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PF_COMPANY_OPEN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOAN_OPEN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOAN_INT_OPEN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PF_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IBB_OWN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NRL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IBB_COMP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMPANY_CONT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOAN_SANC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PFLOAN_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PFINT_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REBATE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RATE_OF_INTEREST" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FINYEAR_FROM" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FINYEAR_TO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PFLOAN_DED_ORI" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTHR_OWN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OTHR_COMP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NDS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PFNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPFNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UAN_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISPLAY_PFRATE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INTEREST_EARN_IBB" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INTEREST_EARN_IBB_COMP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_IBB_OWN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_VPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_PF_GROSS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_CPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_NRL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_FPF_AMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_COMPANY_CONT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_LOAN_SANC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_PFLOAN_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_PFINT_DED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_IBB_COMP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGULAR_OR_CONTRACT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RETIREMENT_DATE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RETIRE_MNTH" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RETIRE_YEAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOL_REASON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_LOAN_ADJ_VPF" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_LOAN_ADJ_LOANAMT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM_LOAN_ADJ_INTREC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMPTYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMINEE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="IBB_OWN_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{IBB_OWN}]]></variableExpression>
+	</variable>
+	<variable name="VPF_AMT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{VPF_AMT}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="PF_GROSS_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{PF_GROSS}]]></variableExpression>
+	</variable>
+	<variable name="CPF_AMT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{CPF_AMT}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="NRL_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{NRL}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="FPF_AMT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{FPF_AMT}]]></variableExpression>
+	</variable>
+	<variable name="COMPANY_CONT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{COMPANY_CONT}]]></variableExpression>
+	</variable>
+	<variable name="LOAN_SANC_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{LOAN_SANC}]]></variableExpression>
+	</variable>
+	<variable name="PFLOAN_DED_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{PFLOAN_DED}]]></variableExpression>
+	</variable>
+	<variable name="PFINT_DED_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{PFINT_DED}]]></variableExpression>
+	</variable>
+	<variable name="IBB_OWN_2" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{IBB_OWN}]]></variableExpression>
+	</variable>
+	<variable name="IBB_COMP_1" class="java.math.BigDecimal" resetType="Group" resetGroup="emp" calculation="Sum">
+		<variableExpression><![CDATA[$F{IBB_COMP}]]></variableExpression>
+	</variable>
+	<variable name="FINAL_BAL_OWN" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{PF_OWN_OPEN}+($F{SUM_CPF_AMT}+$F{SUM_VPF_AMT})+$F{INTEREST_EARN_IBB}-$F{SUM_NRL}]]></variableExpression>
+	</variable>
+	<variable name="FINAL_BAL_COMP" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{PF_COMPANY_OPEN}+$F{SUM_COMPANY_CONT}+$F{INTEREST_EARN_IBB_COMP}]]></variableExpression>
+	</variable>
+	<variable name="FINAL_BAL_LOAN" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{LOAN_OPEN}+$F{SUM_LOAN_SANC} - $F{SUM_PFLOAN_DED}]]></variableExpression>
+	</variable>
+	<group name="emp">
+		<groupExpression><![CDATA[$F{NGS}]]></groupExpression>
+		<groupHeader>
+			<band height="146">
+				<textField>
+					<reportElement x="50" y="0" width="700" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{COMPANY_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="50" y="10" width="700" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Employees Provident Fund]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="50" y="20" width="700" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Ledger for the period April "+$F{FINYEAR_FROM}+" to March "+$F{FINYEAR_TO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="54" width="89" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Employee Code:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="66" width="89" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Department No:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="194" y="54" width="82" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[PF Account No :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="627" y="54" width="83" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[FPF Account No:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="90" y="54" width="66" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NGS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="90" y="66" width="66" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{NDS}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="710" y="54" width="58" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{FPFNO}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="287" y="54" width="100" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{PFNO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="194" y="66" width="93" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Employee Name:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="287" y="66" width="475" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EMP_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="7" y="85" width="150" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Opening Balance  ------->]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="535" y="85" width="41" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Loan:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="85" width="54" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Company:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="465" y="54" width="160" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["UAN: "+($F{UAN_NO}==null?"        ":$F{UAN_NO})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="174" y="85" width="115" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PF_OWN_OPEN})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="583" y="85" width="76" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LOAN_OPEN})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="12" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="677" y="85" width="43" height="14">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="CONTRACT"]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Interest:]]></text>
+				</staticText>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="719" y="85" width="42" height="14">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="CONTRACT"]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{LOAN_INT_OPEN}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="32" width="700" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["(Salary of March "+$F{FINYEAR_FROM}+" to February "+$F{FINYEAR_TO}+")"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="6" y="104" width="34" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Month / Year]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="59" y="104" width="34" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[PF Pay]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="113" y="104" width="43" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Product (Own)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="192" y="104" width="34" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[CPF]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="242" y="104" width="34" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[VPF]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="301" y="104" width="34" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[NRL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="352" y="104" width="43" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Pension]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="410" y="104" width="56" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Product (Company)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="465" y="104" width="74" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Company Contribution]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="547" y="104" width="43" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[New Loan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="612" y="104" width="43" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Loan Recovery]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="672" y="104" width="50" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Interest Recovery]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="724" y="106" width="38" height="22"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Rebate]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="66" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="131" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="193" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[4]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="250" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[5]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="310" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[6]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[7]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="439" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[8]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="500" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[9]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="557" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[10]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="625" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[11]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="684" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[12]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="729" y="132" width="26" height="14"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[13]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="103" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="1" y="131" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="1" y="145" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="1" y="83" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement x="40" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="1" y="83" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="98" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="177" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="237" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="293" y="83" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement x="352" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="400" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="471" y="83" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement x="533" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="602" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="663" y="83" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement x="725" y="103" width="1" height="42"/>
+				</line>
+				<line>
+					<reportElement x="763" y="83" width="1" height="62"/>
+				</line>
+				<staticText>
+					<reportElement x="145" y="85" width="28" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Own:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="396" y="85" width="73" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PF_COMPANY_OPEN})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="223">
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="301" y="50" width="166" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{SUM_IBB_COMP}+" x "+$F{DISPLAY_PFRATE}+"/1200"]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="219" y="3" width="72" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_VPF_AMT})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="28" y="3" width="68" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_PF_GROSS})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="157" y="3" width="80" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_CPF_AMT})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="290" y="3" width="60" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_NRL})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="353" y="3" width="42" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0").format($F{SUM_FPF_AMT})]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="453" y="3" width="79" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_COMPANY_CONT})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="535" y="3" width="60" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_LOAN_SANC})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="605" y="3" width="54" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_PFLOAN_DED})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="666" y="3" width="55" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_PFINT_DED})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5" y="22" width="271" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" A. Opening Balance as on 01/04/"+ $F{FINYEAR_FROM}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="194" y="22" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PF_OWN_OPEN})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="369" y="22" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PF_COMPANY_OPEN})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="559" y="22" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LOAN_OPEN})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="5" y="36" width="189" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ B. Total of Col 4 + 5]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="194" y="36" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{SUM_CPF_AMT}+$F{SUM_VPF_AMT}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="297" y="36" width="85" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Total of Col 9 ]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="369" y="36" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_COMPANY_CONT})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="559" y="36" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_LOAN_SANC})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="476" y="36" width="114" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Total of Column 10]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="64" width="152" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ D. Loan Adjusted VPF                                                                                ]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="5" y="50" width="271" height="14"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" C. Interest  "  +$F{SUM_IBB_OWN}+" x "+$F{DISPLAY_PFRATE}+"/1200"]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="194" y="50" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{INTEREST_EARN_IBB})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="404" y="50" width="65" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{INTEREST_EARN_IBB_COMP})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="4" y="3" width="34" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="78" width="184" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ E. Loan Recovery & Rebate]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="92" width="151" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ F. Non Refundable Loan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="110" width="271" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ G. Closing Balance  (A+B+C+D-E-F)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="78" width="149" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Total of Col 11 + 13]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="553" y="78" width="106" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_PFLOAN_DED})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="189" y="92" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_NRL})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="189" y="110" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{PF_OWN_OPEN}+($F{SUM_CPF_AMT}+$F{SUM_VPF_AMT})+$F{INTEREST_EARN_IBB}+$F{SUM_LOAN_ADJ_VPF}-$F{SUM_NRL}))]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="369" y="110" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{PF_COMPANY_OPEN}+$F{SUM_COMPANY_CONT}+$F{INTEREST_EARN_IBB_COMP}))]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="559" y="110" width="100" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format(($F{LOAN_OPEN}+$F{SUM_LOAN_SANC}+($F{EMPTYPE}=="CONTRACT"?$F{SUM_LOAN_ADJ_LOANAMT}:$F{SUM_LOAN_ADJ_VPF}) - $F{SUM_PFLOAN_DED}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="8" y="145" width="766" height="24">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="REGULAR"]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# Nomination shall be in favour of family member(s). Fresh nomination shall be made by the members on getting married. Any nomination before marriage shall be deemed to be invalid.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="157" width="700" height="12">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="REGULAR"]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# Avail Advances / Withdrawls only to meet genuine purpose. ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="169" width="700" height="12">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="REGULAR"]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# Submit your transfer application promptly. Don't wait till your superannuation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="181" width="700" height="12"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# Any Error or Ommission must be reported to the PF Section within 1(One) Month.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="193" width="700" height="12"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# This is a Computer Generated Card and does not require any signature.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="203" width="700" height="12"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[# The Statement is issued subject to finalisation and audit of Accounts.
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2" y="132" width="333" height="12">
+						<printWhenExpression><![CDATA[$F{EMPTYPE}=="REGULAR"]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Notes:-     ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="370" y="206" width="396" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{COMPANY_NAME}+" Employees Provident Fund"]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="90" y="3" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_IBB_OWN})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="387" y="3" width="82" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{SUM_IBB_COMP})]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="194" y="64" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{SUM_LOAN_ADJ_VPF}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="354" y="64" width="115" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{EMPTYPE}=="CONTRACT"?$F{SUM_LOAN_ADJ_LOANAMT}:$F{SUM_LOAN_ADJ_VPF}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement x="539" y="64" width="120" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{SUM_LOAN_ADJ_INTREC}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="683" y="110" width="78" height="14"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format((($F{EMPTYPE}=="CONTRACT"?($F{LOAN_INT_OPEN}-$F{SUM_PFINT_DED}+$F{SUM_LOAN_ADJ_INTREC}):0)))]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="2" y="0" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="2" y="16" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="1" y="0" width="1" height="124"/>
+				</line>
+				<line>
+					<reportElement x="40" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="98" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="177" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="293" y="0" width="1" height="124"/>
+				</line>
+				<line>
+					<reportElement x="352" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="471" y="0" width="1" height="124"/>
+				</line>
+				<line>
+					<reportElement x="471" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="533" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="663" y="0" width="1" height="124"/>
+				</line>
+				<line>
+					<reportElement x="663" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="725" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="763" y="0" width="1" height="124"/>
+				</line>
+				<line>
+					<reportElement x="1" y="124" width="763" height="1"/>
+				</line>
+				<line>
+					<reportElement x="237" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="400" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement x="602" y="0" width="1" height="16"/>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="477" y="127" width="260" height="12"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMINEE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="42" y="0" width="55" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PF_GROSS})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="99" y="0" width="76" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{IBB_OWN})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="176" y="0" width="60" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{CPF_AMT})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="237" y="0" width="54" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{VPF_AMT})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="293" y="0" width="57" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{NRL})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="472" y="0" width="60" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{COMPANY_CONT})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="386" y="0" width="83" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{IBB_COMP})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="353" y="0" width="42" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0").format($F{FPF_AMT})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="605" y="0" width="54" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PFLOAN_DED})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="535" y="0" width="60" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{LOAN_SANC})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="666" y="0" width="55" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new com.ibm.icu.text.DecimalFormat("#,##,##0.00").format($F{PFINT_DED})]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="726" y="0" width="35" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{REBATE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="1" height="16"/>
+			</line>
+			<textField>
+				<reportElement x="2" y="0" width="45" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRINTMONTH}+"/"+$F{PRNTYEAR}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="40" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="98" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="177" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="237" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="293" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="352" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="400" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="471" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="533" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="602" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="663" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="725" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="763" y="0" width="1" height="16"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
